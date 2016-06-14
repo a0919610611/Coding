@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-const double EPS=1e-8 
+const double EPS=1e-6
 int dcmp(double x) // compare ex: dcmp(a-b) 0:a=b -1 :a<b 1 : a>b
 {
     if(fabs(x)<EPS) return 0;
@@ -174,6 +174,5 @@ double ConvexPolygonArea(Point *p,int n)
 	for(int i=1;i<n-1;++i)
 		area+=cross(p[i]-p[0],p[i+1]-p[0]);
 	return fabs(area)/2;
-}
 // 半平面交
 
