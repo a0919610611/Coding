@@ -10,7 +10,7 @@ struct Point
 {
     double x,y;
     Point(){x=0,y=0;}
-    Point(int _x,int _y){x=_x;y=_y;}
+    Point(double  _x,double _y){x=_x;y=_y;}
     Point operator +(const Point & b)
     {
         return Point(x+b.x,y+b.y);
@@ -171,7 +171,7 @@ int ConvexHull(Point* P, int cnt, Point* res) { //凸包
 }
 double PolygonArea(Point *p,int n)
 {
-	double area;
+	double area=0;
 	for(int i=0;i<n;++i)
 		area+=cross(p[i],p[(i+1)%n]);
 	return fabs(area)/2;
