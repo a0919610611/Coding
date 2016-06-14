@@ -150,9 +150,11 @@ double ldistance (Line & l1 ,Line & l2) //線段到線段距離
     if(cross(v1,v2)!=0) return 0;
     return distance(l1.p1,l2); //點到線段距離
 }
-int ConvexHull(Point* P, int cnt, Point* res) { //凸包
-    sort(P, P + cnt); //先x 後 y 
-    cnt = unique(P, P + cnt) - P; //非重複的點數量
+int ConvexHull(vector<Point> & P, Point* res) { //凸包Andrew's Monotone Chain
+    sort(P.begin(), P.end()); //先x 後 y 
+    auto last = unique(P.begin(), P .end()) ; //非重複的點數量
+    P.erase(last,P.end());
+    int cnt=P.size();
     int m = 0;
     for (int i = 0; i < cnt; i++) {
         while (m > 1 && cross(res[m - 1] - res[m - 2], P[i] - res[m - 2]) <= 0)
@@ -165,7 +167,7 @@ int ConvexHull(Point* P, int cnt, Point* res) { //凸包
         m--;
         res[m++] = P[i];
     }
-    if (cnt > 1) //頭尾
+    if (cnt > 1) //頭尾 1個點不用--
     m--;
     return m; //凸包點數
 }
@@ -192,4 +194,5 @@ Polygon halfplane_intersection (Polygon & p,Line & line)
     }
     return q;
 }
+
 
