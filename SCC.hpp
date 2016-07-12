@@ -7,22 +7,23 @@ using namespace std;
 vector<int> e[10000]; //Edge
 int visit[10000], low[10000];
 bool instack[10000];
-int belong[10000]; //屬於哪個點
+int belong[10000]; //屬於哪一塊
 stack<int> s;
 int t; //Time stamp;
 int num; //number of SCC
 void DFS(int u)
 {
-    visit[u] = low[u] = ++t;
+    visit[u] = low[u] = ++t; //進行標號
     s.push(u);
     instack[u] = true;
     for (int i = 0; i < e[i].size(); i++) {
         int v = e[u][i];
         if (!visit[v]) {
             DFS(v);
-            if (!instack[v]) {
-                low[u] = min(low[u], low[v]);
-            }
+            low[u] = min(low[u], low[v]); // 找 u 的最上層祖先
+        }
+        if (instack[v]) { //如果在stack
+            low[u] = min(low[u], visit[v]); //還在stack中 用 visit的值
         }
     }
     if (visit[u] == low[u]) //SCC
@@ -51,4 +52,5 @@ int Tarjan(int n) //n:number of vertex 0-based
             DFS(i);
         }
     }
+    return num;
 }
