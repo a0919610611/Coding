@@ -86,3 +86,12 @@ void Tarjan(int u)
         }
     }
 }
+//double algorithm 倍增算法
+int height;
+void dfs(int u)
+{
+    for(int i=0;i<tree[x].size();i++)
+    {
+        int v=tree[x][i];
+    }
+}
