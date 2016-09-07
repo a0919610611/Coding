@@ -35,7 +35,7 @@ int lca(int u,int v)
     if(depth[u]<depth[v]) swap(u,v);
     for(int i =log2(MAXN-1);i>=0;i--)
     {
-        if(depth[father[u][i]]>=depth[v]) u=father[u][i];
+        if( father[u][i]!=-1 && depth[father[u][i]]>=depth[v]) u=father[u][i];
     }
     if(u==v) return v;
     for(int i=log2(MAXN-1);i>=0;i--)
