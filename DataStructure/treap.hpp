@@ -80,7 +80,7 @@ Treap* Del(Treap* t, int k) //delete all key=k
         return t;
     }
 }
-Treap* insert(Treap* t, int key,int val)
+Treap* Insert(Treap* t, int key,int val)
 {
     Treap *tl, *tr;
     Split(t, key, tl, tr);

@@ -6,9 +6,9 @@ struct BIT {
     vector<int> value;
     BIT(vector<int> _v = {})
     {
-        value.resize(_v.size());
+        value.resize(_v.size()+1);
         for (int i = 1; i < _v.size(); i++) {
-            update(i, _v[i]);
+            update(i, _v[i]-1);
         }
     };
     int lowbit(int x)
@@ -19,7 +19,7 @@ struct BIT {
     // value[k] += value;
     void update(int k, int val)
     {
-        for (int i = k; i <= value.size(); i += lowbit(i)) {
+        for (int i = k; i < value.size(); i += lowbit(i)) {
             value[i] += val;
         }
     }
